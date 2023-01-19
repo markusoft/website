@@ -1,0 +1,169 @@
+/* 
+ * =============================================================================
+ * Author: Mark Angelo Angulo
+ * =============================================================================
+ */
+
+@media only screen and (max-width: 991px) {
+    
+    :root {
+        --default-spacing: 1rem;
+        
+        --side-spacing: 5%;
+        --wider-side-spacing: 5%;
+    }
+    
+/* 
+ * -----------------------------------------------------------------------------
+ *  GRID
+ * -----------------------------------------------------------------------------
+ */
+
+    #grid {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 80px auto auto;
+        grid-template-areas:
+            "main-navigation"
+            "main"
+            "footer";
+    }
+    
+/*
+ * -----------------------------------------------------------------------------
+ *  POSITION
+ * -----------------------------------------------------------------------------
+ */
+
+
+/* 
+ * -----------------------------------------------------------------------------
+ *  STYLE
+ * -----------------------------------------------------------------------------
+ */
+
+/*
+    #main-navigation {
+        max-height: 80px;
+        overflow: hidden;
+        display: block;
+    }
+  */
+  
+    #main-navigation {
+        overflow-y: hidden;
+    }
+  
+    #main-navigation.collapsed {
+        height: auto;
+        max-height: 500px;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+        /*transition: max-height 2s;*/
+    }
+    
+    #main-navigation #list-navigation li:first-child a[href="#home"] {
+        font-size: 0;
+        display: block;
+        height: 80px;
+        text-align: left;
+        padding: 0px;
+        margin-bottom: 0px;
+        
+        
+        padding-top: 1rem;
+    }
+    
+    #main-navigation #list-navigation li:first-child a[href="#home"]::after {
+        color: var(--accent-1-500);
+        float: right;
+        display: inline-block;
+        font-family: 'fontello';
+        font-size: 2rem;
+        content: var(--icon-menu);
+        cursor: pointer;
+        vertical-align: middle;
+/*        margin: 1rem 0 0 0;*/
+        transition-duration: 0.5s;
+        transition-property: transform;
+        transform: rotate(0deg);
+    }
+    
+    #main-navigation.collapsed #list-navigation li:first-child a[href="#home"]::after {
+        content: var(--icon-cancel); 
+        transition-duration: 0.5s;
+        transition-property: transform;
+        transform: rotate(90deg);
+    }
+    
+    #main-navigation #list-navigation li:first-child a[href="#home"] > span {
+        text-align: left;
+        vertical-align: middle;
+        width: 160px;
+    }
+    
+    #main-navigation #list-navigation li:first-child a[href="#home"].collapse::after {
+        content: '\ec16'; /* icon-down-5  */
+    }
+    
+    #list-navigation {
+        display: block;
+    }
+    
+    #list-navigation li {
+        display: block;
+        text-align: right;
+        padding: .4rem;
+        margin: 0px 1rem;
+    }
+    
+    /*
+    #list-navigation li:first-child {
+        height: 80px;
+        
+        display: flex;
+        align-items: center;
+    }
+    */
+
+    
+    #main-navigation.collapsed #list-navigation li:first-child {
+        border-bottom: 1px solid var(--border-color-500);
+    }
+    
+    #list-navigation li:nth-child(2) {
+        margin-top: 1rem;
+        margin-left: 1rem;
+    }
+    
+    #list-navigation li:last-child {
+        margin-right: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    #list-navigation li:last-child a {
+        display: inline-block;
+    }
+    
+    
+    #testimonials:target #list-stories {
+        grid-template-columns: repeat(1, 1fr);;
+    }
+    
+    #skills,
+    #star-diagram {
+        width: 100%;
+    }
+    
+    #star-diagram {
+        margin-left: 0;
+    }
+    
+    #skills li > span:first-child {
+        min-width: 30%;
+    }
+
+    #skills progress {
+        min-width: 68%;
+    }
+    
+}
