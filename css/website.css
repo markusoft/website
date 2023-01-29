@@ -842,7 +842,7 @@ header .sub-title {
 }
 
 #testimonials:target article blockquote {
-    order: 3;
+    order: 5;
 }
 
 #testimonials:target article .video {
@@ -851,7 +851,7 @@ header .sub-title {
 }
 
 #testimonials:target article header {
-    order: 5;
+    order: 3;
 }
 
 #testimonials:target article .logo {
@@ -867,9 +867,12 @@ header .sub-title {
     cursor: pointer;
 }
 
-#testimonials:target header > h4,
-#testimonials:target header > .title {
+#testimonials:target header > h4 {
     display: inline-block;
+}
+
+#testimonials:target header > .title {
+	display: block;
 }
 
 #testimonials:target header > h4 > span {
