@@ -1,5 +1,5 @@
 TemplateConfig = {
-    license: '72ee779e7507950b909d46f14c8e6e974a623cc2710e13fc3fb741d98cf95650',
+    license: 'ebc1a535a0b1e3acc17787a314509da7f7e20ed5c656447f001b49c5f444503d',
     name: 'Lazy',
 //    prefix: 'prsft-',
     animations: {

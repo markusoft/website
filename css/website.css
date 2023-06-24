@@ -4,6 +4,12 @@
  * =============================================================================
  */
 
+/* 
+ * -----------------------------------------------------------------------------
+ *  Variables
+ * -----------------------------------------------------------------------------
+ */
+
 :root {
     --max-width: 1140px;
     --narrow-width: 940px;
@@ -17,10 +23,9 @@
 
 /* 
  * -----------------------------------------------------------------------------
- *  FONTS
+ *  Fonts
  * -----------------------------------------------------------------------------
  */
-
 
 @font-face {
     font-family: 'Century Gothic';
@@ -48,7 +53,7 @@
 
 /* 
  * -----------------------------------------------------------------------------
- *  ICONS
+ *  Icons
  * -----------------------------------------------------------------------------
  */
 
@@ -64,7 +69,7 @@
 
 /* 
  * -----------------------------------------------------------------------------
- *  ANIMATIONS
+ *  Animations
  * -----------------------------------------------------------------------------
  */
 
@@ -91,10 +96,9 @@
 
 /* 
  * -----------------------------------------------------------------------------
- *  TAGS
+ *  Tags
  * -----------------------------------------------------------------------------
  */
-
 
 * {
     color: var(--text-color-500);
@@ -130,10 +134,10 @@ main {
 }
 
 /*
-* ------------------------------------------------------------------------------
-*  STYLE
-* ------------------------------------------------------------------------------
-*/
+ * ------------------------------------------------------------------------------
+ *  STYLE
+ * ------------------------------------------------------------------------------
+ */
 
 /* -------------------------------------------------------------------- Tags  */
 h1 {
@@ -292,45 +296,31 @@ header .sub-title {
 
 /* ------------------------------------------------------------------- Pages  */
 
-/* home */
-#home > header,
-#home > [role="banner"],
-#full-stack,
-#relationships,
-#recent-works,
+#services,
+#about,
 #testimonials,
-#featured,
-/* home/specialization */
-#specialization > header,
-#specialization > div:nth-child(2),
-#specialization > article,
-/* services */
-#services > header,
-#services > section,
-/* about */
-#about > section,
-/* contact */
 #contact-form {
     display: none;
 }
 
-/* home */
-#home:target > header,
-#home:target > [role="banner"],
-#home:target > section,
-#home:target > #specialization > header,
-#home:target > #specialization > #specialization-navigation,
-/* home/specialization */
-#specialization > article:target,
-/* services */
-#services:target > header,
-#services:target > section,
-/* about */
-#about:target > section,
-/* contact */
+#home:target,
+#services:target,
+#about:target,
+#testimonials:target,
 #contact-form:target {
     display: block;
     animation: var(--page-animation);
+}
+
+#services:target ~ section,
+#about:target ~ section,
+#testimonials:target ~ section,
+#contact-form:target ~ section {
+    display: none;
+}
+
+#specialization > article {
+    display: none;
 }
 
 #main-navigation {
@@ -386,29 +376,8 @@ header .sub-title {
 #list-navigation a > span {
     font-family: 'Century Gothic';
     font-size: 1.1rem;
+    font-weight: bold;
 }
-
-/*
-#list-navigation a[href="#home"] {
-    font-size: 0;
-    display: inline-block;
-    min-width: 210px;
-    height: 100%;
-    min-height: 40px;
-    margin-bottom: .8rem;
-}
-
-#list-navigation a[href="#home"] > span {
-    font-size: 0;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    min-height: 60px;
-    background: url('../img/prosoft-logo.svg') no-repeat top right;
-    background-size: 100% 100%;
-    background-origin: content-box;
-}
-*/
 
 #list-navigation a[href="#contact-form"]:active {
     position: relative;
@@ -416,21 +385,14 @@ header .sub-title {
 }
 
 /* ===================================================================== Home */
-#home:target > [role="banner"] {
+#home > [role="banner"] {
     display: flex;
     flex-flow: column;
     height: 90vmin;
-    
     background-color: var(--primary-1-500);
-    /*background-image: url('../img/dot.webp');*/
-    
-/*    background-image: url('../img/banners/home.webp');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;*/
 }
 
-#home:target > [role="banner"] .tpl-parallax-background {
+#home > [role="banner"] .tpl-parallax-background {
     opacity: 0.75;
 }
 
@@ -442,17 +404,27 @@ header .sub-title {
     margin-top: 18vh;
 }
 
+#home > [role="banner"] .sub-title,
+#home > [role="banner"] span {
+    text-shadow: 0px 3px 10px rgba(76, 76, 76, 1);
+}
+
+
+#home > [role="banner"] h3,
+#home > [role="banner"] .sub-title,
+#home > [role="banner"] a,
 #home:target > [role="banner"] > * {
     z-index: 2;
 }
 
-#home:target > [role="banner"] img {
+#home > [role="banner"] img {
     z-index: 1;
 }
 
 .custom #home > [role="banner"] > h3 > span,
 .custom #home > [role="banner"] .sub-title {
-    color: var(--text-color-500);
+    color: var(--text-color-contrast-500);
+    text-shadow: 0px 3px 10px rgba(76, 76, 76, 1);
 }
 
 #home > [role="banner"] > h3 > span {
@@ -478,14 +450,8 @@ header .sub-title {
 /* =============================================================== Full Stack */
 
 #full-stack {
-    display: none;
     background-color: var(--primary-2-500);
     padding: var(--default-spacing) var(--side-spacing);
-}
-
-#full-stack:target {
-    display: block;
-    animation: var(--page-animation);
 }
 
 #list-full-stack {
@@ -519,11 +485,11 @@ header .sub-title {
     margin-bottom: 1rem;
 }
 
-#home:target > #specialization {
+#home > #specialization {
     padding: var(--default-spacing) var(--default-spacing) 0px;
 }
 
-#home:target > #specialization > #specialization-navigation {
+#home > #specialization > #specialization-navigation {
     display: flex;
     flex-flow: wrap;
     justify-content: center;
@@ -555,6 +521,13 @@ header .sub-title {
     font-family: 'Century Gothic';
     font-weight: bold;
     line-height: 1.5rem;
+}
+
+#specialization-navigation a span:last-child {
+    font-size: .9rem;
+    color: var(--text-color-500);
+    line-height: 1rem;
+    margin-top: .3rem;
 }
 
 #specialization-navigation a span.svg {
@@ -594,7 +567,74 @@ header .sub-title {
     fill: var(--secondary-1-500);
 }
 
-#specialization > article {
+#specialize-html,
+#specialize-css,
+#specialize-js,
+#specialize-jquery,
+#specialize-php,
+#specialize-ci {
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    background: linear-gradient(180deg, var(--primary-2-500) 0%, var(--primary-1-500) 100%);
+    padding: 1rem;
+}
+
+#specialize-html h4,
+#specialize-css h4,
+#specialize-js h4,
+#specialize-jquery h4,
+#specialize-php h4,
+#specialize-ci h4 {
+    text-align: center;
+}
+
+#specialize-html h4 span,
+#specialize-css h4 span,
+#specialize-js h4 span,
+#specialize-jquery h4 span,
+#specialize-php h4 span,
+#specialize-ci h4 span {
+    font-size: 1.4rem;
+}
+
+#specialize-html svg,
+#specialize-css svg,
+#specialize-js svg,
+#specialize-jquery svg,
+#specialize-php svg,
+#specialize-ci svg {
+    margin: 1rem auto;
+    display: block;
+    width: 150px;
+    height: auto;
+}
+
+#specialize-html p,
+#specialize-css p,
+#specialize-js p,
+#specialize-jquery p,
+#specialize-php p,
+#specialize-ci p {
+    margin: 0;
+}
+
+#specialize-html a,
+#specialize-css a,
+#specialize-js a,
+#specialize-jquery a,
+#specialize-php a,
+#specialize-ci a {
+    justify-self: center;
+}
+
+/*
+#specialize-html,
+#specialize-css,
+#specialize-js,
+#specialize-jquery,
+#specialize-php,
+#specialize-ci {
     text-align: center;
     height: 570px;
     background: linear-gradient(180deg, var(--primary-2-500) 0%, var(--primary-1-500) 100%);
@@ -604,16 +644,14 @@ header .sub-title {
     margin: 0 auto;
 }
 
-#specialization > article h4 {
+#specialize-html > article h4,
+#specialize-css > article h4,
+#specialize-js > article h4,
+#specialize-jquery > article h4,
+#specialize-php > article h4,
+#specialize-ci > article h4 {
     padding: 0 3rem;
-}
 
-#specialization > article h4 > span {
-    text-align: left;
-    font-size: 1.3rem;
-}
-
-#specialization > article h4 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -622,37 +660,29 @@ header .sub-title {
     border-bottom: 1px solid var(--border-color-500);
 }
 
-#specialization > article h4 .svg {
-    margin-right: 1rem;
+#specialize-html > article h4 > span,
+#specialize-css > article h4 > span,
+#specialize-js > article h4 > span,
+#specialize-jquery > article h4 > span,
+#specialize-php > article h4 > span,
+#specialize-ci > article h4 > span {
+    text-align: left;
+    font-size: 1.3rem;
 }
 
-#specialization > article h4 svg {
+#specialize-html > article h4 > svg,
+#specialize-css > article h4 > svg,
+#specialize-js > article h4 > svg,
+#specialize-jquery > article h4 > svg,
+#specialize-php > article h4 > svg,
+#specialize-ci > article h4 > svg {
     width: 80px;
     height: 80px;
 }
+*/
 
-#specialization #website-design {
-    background: url('../img/backgrounds/specialization/web-design.webp') no-repeat top left, linear-gradient(180deg, var(--primary-2-500) 0%, var(--primary-1-500) 100%);
-}
-#specialization #logo-design {
-    background: url('../img/backgrounds/specialization/logo-design.webp') no-repeat top left, linear-gradient(180deg, var(--primary-2-500) 0%, var(--primary-1-500) 100%);
-}
-#specialization #animation {
-    background: url('../img/backgrounds/specialization/animation.webp') no-repeat top left, linear-gradient(180deg, var(--primary-2-500) 0%, var(--primary-1-500) 100%);
-}
-#specialization #social-media-marketing {
-    background: url('../img/backgrounds/specialization/social-media-marketing.webp') no-repeat top left, linear-gradient(180deg, var(--primary-2-500) 0%, var(--primary-1-500) 100%);
-}
-#specialization #email-marketing {
-    background: url('../img/backgrounds/specialization/email-marketing.webp') no-repeat top left, linear-gradient(180deg, var(--primary-2-500) 0%, var(--primary-1-500) 100%);
-}
-#specialization #virtual-assistant {
-    background: url('../img/backgrounds/specialization/virtual-assistant.webp') no-repeat top left, linear-gradient(180deg, var(--primary-2-500) 0%, var(--primary-1-500) 100%);
-}
-
-#specialization a[href="#contact-form"] {
-    display: inline-block;
-    margin-top: 1rem;
+#specialization article a[href="#contact-form"] {
+    margin-top: 1rem;   
 }
 
 /* ============================================================ Relationships */
@@ -737,11 +767,6 @@ header .sub-title {
     background-color: var(--primary-1-500);
 }
 
-#services:target {
-    display: block;
-    animation: var(--page-animation);
-}
-
 #services-offered {
     background-color: var(--primary-1-500);
     padding: var(--default-spacing) var(--side-spacing);
@@ -781,18 +806,9 @@ header .sub-title {
 
 #testimonials {
     text-align: center;
-    padding: var(--default-spacing);
-}
-
-#testimonials [role="banner"] {
-    margin: calc( -1 * var(--default-spacing));
-    margin-bottom: var(--default-spacing);
 }
 
 #testimonials:target {
-    display: none;
-    animation: var(--page-animation);
-    display: block;
     background-color: var(--primary-2-500);
 }
 
@@ -842,7 +858,7 @@ header .sub-title {
 }
 
 #testimonials:target article blockquote {
-    order: 5;
+    order: 3;
 }
 
 #testimonials:target article .video {
@@ -851,7 +867,7 @@ header .sub-title {
 }
 
 #testimonials:target article header {
-    order: 3;
+    order: 5;
 }
 
 #testimonials:target article .logo {
@@ -867,12 +883,9 @@ header .sub-title {
     cursor: pointer;
 }
 
-#testimonials:target header > h4 {
-    display: inline-block;
-}
-
+#testimonials:target header > h4,
 #testimonials:target header > .title {
-	display: block;
+    display: inline-block;
 }
 
 #testimonials:target header > h4 > span {
@@ -892,21 +905,18 @@ header .sub-title {
     margin-top: var(--default-spacing);
 }
 
+#user-testimonials {
+    padding: var(--default-spacing);
+}
+
 /* ==================================================================== About */
 
 #about {
     display: none;
     background-color: var(--primary-2-500);
-    padding: var(--default-spacing);
 }
 
-#about:target {
-    display: block;
-    animation: var(--page-animation);
-}
-
-#about > [role="banner"] {
-    margin: calc(-1 * var(--default-spacing));
+#about [role="banner"] {
     margin-bottom: var(--default-spacing);
 }
 
@@ -924,7 +934,7 @@ header .sub-title {
 
 #principles {
     text-align: center;
-    margin-top: var(--default-spacing)
+    margin: var(--default-spacing) var(--default-spacing) 0;
 }
 
 #list-principles {
@@ -1054,10 +1064,6 @@ header .sub-title {
     margin-bottom: 2rem;
 }
 
-#footer-links ul li a:hover span{
-    /*color: var(--hover-color);*/
-}
-
 /* =================================================-============ Get Intouch */
 
 #get-intouch {
@@ -1070,64 +1076,14 @@ header .sub-title {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
-#get-intouch header {
+#get-intouch > div {
     grid-column: 1 / -1;
-}
-
-#get-intouch header .sub-title {
-    margin-bottom: 0px;
-}
-
-/*
-#get-intouch {
-    padding: var(--default-spacing);
-    background-color: var(--primary-2-500);
-}
-
-#get-intouch * {
-    color: white;
-}
-
-
-#get-intouch > * {
-    flex: 1 160px;
-}
-
-#get-intouch > .sub-title {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-}
-
-#get-intouch > :nth-child(1),
-#get-intouch > :nth-child(2) {
     text-align: center;
-    flex: 1 100%;
-    width: 100%;
 }
 
-#get-intouch h2 {
-    display: block;
-    font-size: 2.5rem;
-}
-
-#get-intouch h3 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-#get-intouch address * {
-    font-family: 'Varela Round';
-    font-style: normal;
-}
-
-#get-intouch address a span {
-    line-height: 2rem;
-}
-
-*/
-
-#get-intouch address a:hover span {
-    /*color: var(--hover-color);*/
+#get-intouch > div .sub-title {
+    font-size: 1.3rem;
+    margin-bottom: 0px;
 }
 
 #email a[href="#contact-form"]::before,
@@ -1191,7 +1147,7 @@ header .sub-title {
 }
 
 .glass #grid {
-    grid-template-columns: 10% auto 10%;
+    grid-template-columns: 2% auto 2%;
     grid-template-rows: 80px auto auto;
     grid-template-areas:
         ". main-navigation ."
@@ -1293,14 +1249,12 @@ header .sub-title {
     mask-image: url('../img/bottom-wave.webp');
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat; 
-    
 }
 
 .curves #main-navigation.sticky {
     box-shadow: none;
     opacity: 1;
 }
-
 
 #specialization {
     position: relative;

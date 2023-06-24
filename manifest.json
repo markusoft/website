@@ -1,7 +1,7 @@
 {
-    "short_name": "Prosoft",
-    "name": "Professional Software Solutions",
-    "description": "Professional Software Solutions Website",
+    "short_name": "Lazy Developer",
+    "name": "Lazy Developer",
+    "description": "Lazy Developer Website",
     "icons": [
         {
             "src": "/source-lazy-dev/build/resources/module-assets/website/img/favicon/android-chrome-192x192.png",

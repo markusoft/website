@@ -20,22 +20,31 @@ document.addEventListener('DOMContentLoaded', function () {
         app.init = function () {
             app.bindings();
             app.menu();
-//            app.initializeLinks();
             app.initializeModals();
-            app.moveTestimonials();
             app.reveal();
             app.changeColor();
             app.manageLinks();
             app.about();
+            app.contact();
         };
 
-
         app.bindings = function () {
-            
-            
             Lazy.parallax('.tpl-parallax');
             app.chart();
-
+        };
+        
+        app.contact = function() {
+            Lazy.don('submit', '#form-contact', function(e) {
+                e.preventDefault();
+                Lazy.modal({
+                    content: '<div style="padding: 1rem">Sample site only contact us on our social medias.</div>',
+                    footer: 'ok',
+                    onOk: function() {
+                        this.close();
+                    }
+                }).open();
+                return false;
+            });
         };
         
         app.about = function() {
@@ -45,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         
         app.redrawChart = function() {
-            let logo = document.querySelector('#list-navigation > li:first-child > a');
+            let logo = document.querySelector('#list-navigation > li:first-child > div > a');
             let accentColor = getComputedStyle(logo.querySelector(':scope > span:first-child')).getPropertyValue('color');
             let textColor = getComputedStyle(logo.querySelector(':scope > span:nth-child(2)')).getPropertyValue('color');
             let webColor = textColor == 'rgb(230, 230, 230)' ? textColor : Chart.defaults.borderColor;
@@ -60,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         app.chart = function() {
             
-                let logo = document.querySelector('#list-navigation > li:first-child > a');
+                let logo = document.querySelector('#list-navigation > li:first-child > div > a');
                 let accentColor = getComputedStyle(logo.querySelector(':scope > span:first-child')).getPropertyValue('color');
                 let textColor = getComputedStyle(logo.querySelector(':scope > span:nth-child(2)')).getPropertyValue('color');
 //                let webColor = Chart.defaults.borderColor;
@@ -161,19 +170,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 siteColorPicker.style.opacity = 0;
             }, 6000);
             
-//            Lazy.addEventListener('click', '#site-color-picker input[name="glass"]', function(e){
-//                if( e.target.checked ) {
-//                    localStorage.setItem('glass', 'true');
-//                } else {
-//                    localStorage.removeItem('glass');
-//                }
-//                bodyClasses.toggle('glass');
-//            });
-
         };
         
         app.reveal = function() {
-            
             // section reveals
 //            Lazy.reveal('main > section > section');
             Lazy.reveal('#testimonials > #list-stories > li');
@@ -190,36 +189,16 @@ document.addEventListener('DOMContentLoaded', function () {
             Lazy.childrenReveal('#specialization-navigation', {
                 children: 'a'
             });
-            
         };
         
         app.initializeLinks = function() {
-            
             $(document).on('click', "[href^='#']", function(e){
                e.preventDefault();
                let id = $(this).attr('href');
                var link = id.substring(1);
-               
                window.history.pushState('', '', link);
-               
             });
-            
         };
-        
-//        app.manageLinks = function() {
-//            let manageLink = function(){
-//                const activeLinks = document.querySelectorAll('a.active');
-//                for (let i = 0; i < activeLinks.length; i++) {
-//                    activeLinks[i].classList.remove('active');
-//                }
-//                const links = document.querySelectorAll(`a[href="${location.hash}"`);
-//                for (let i = 0; i < links.length; i++) {
-//                    links[i].classList.add('active');
-//                }
-//            };
-//            window.addEventListener("load", manageLink);
-//            window.addEventListener('popstate', manageLink);
-//        };
 
         app.manageLinks = function() {
             let manageLink = function(){
@@ -231,54 +210,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 for (let i = 0; i < links.length; i++) {
                     links[i].classList.add('active');
                 }
-                
-//                const hash = window.location.hash;
-//                history.scrollRestoration = 'manual';
-//                let url = hash.split('#')[1] || hash.split('#')[0];
-//                history.replaceState('', document.title, url);
-
             };
             window.addEventListener("load", manageLink);
             window.addEventListener('popstate', manageLink);
         };
         
         app.initializeModals = function() {
-            var links = document.querySelectorAll('#specialization-navigation a');
+            let links = document.querySelectorAll('#specialization-navigation > a');
             if(links) {
                 for(let i=0; i<links.length; i++) {
                     const href = links[i].getAttribute('href');
                     modals[href] = Lazy.overlay(href);
                     links[i].addEventListener('click', function(e){
                         e.preventDefault();
-//                        console.log( links[i].getAttribute('href') );
-//                        modals[href].open();
+                        let a = document.querySelector(`${href} a`);
+                        Lazy.don('click', `${href} a`, e => {
+                            modals[href].close();
+                        });
+                        modals[href].open();
                     }, false);
                 }
             }
         };
-        
-        app.moveTestimonials = function() {
-            
-//            $('a[href="#testimonials"]').click(function(e){
-//                $('#testimonials').insertAfter($('#services'));
-//            });
-//            
-//            $('a[href="#home"]').click(function(e){
-//                $('#testimonials').insertAfter($('#strategic-partners'));
-//            });
-            
-        };
-        
+
         app.menu = function() {
           
             Lazy.on('click', '#list-navigation a', function(e){
                 if( e.target.nodeName == 'A') {
                     document.getElementById('main-navigation').classList.toggle('collapsed');    
-//                    if( e.target.closest('#main-navigation').classList.contains('collapsed') ) {
-//                        document.querySelector('#main-navigation').animate({maxHeight: '80px'}, 1000);
-//                    } else {
-//                        document.querySelector('#main-navigation').animate({maxHeight: '500px'}, 1000);
-//                    }
                 }
             });
 
