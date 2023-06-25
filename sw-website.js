@@ -4,14 +4,14 @@ self.addEventListener('install', e => {
             return cache.addAll([
                 './index.html',
                 // fonts
-                './resources/plugins/fontello/font/fontello.eot',
-                './resources/plugins/fontello/font/fontello.svg',
-                './resources/plugins/fontello/font/fontello.ttf',
-                './resources/plugins/fontello/font/fontello.woff',
-                './resources/plugins/fontello/font/fontello.woff2',
-                './resources/assets/fonts/CenturyGothic-Bold.ttf',
-                './resources/assets/fonts/CenturyGothic-Regular.ttf',
-                './resources/assets/fonts/VarelaRound-Regular.ttf',
+                './plugins/fontello/font/fontello.eot',
+                './plugins/fontello/font/fontello.svg',
+                './plugins/fontello/font/fontello.ttf',
+                './plugins/fontello/font/fontello.woff',
+                './plugins/fontello/font/fontello.woff2',
+                './fonts/CenturyGothic-Bold.ttf',
+                './fonts/CenturyGothic-Regular.ttf',
+                './fonts/VarelaRound-Regular.ttf',
                 // assets
                 // css
                 './assets/css/normalize.css',
