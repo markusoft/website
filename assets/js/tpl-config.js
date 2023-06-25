@@ -19,13 +19,13 @@ TemplateConfig = {
     overlay: {},
     modalHeaders: {
         custom: function(opt) {
-            return `<button class="${opt.prefix}btn ${opt.prefix}modal-cancel">${opt.cancel}</button><div class="${opt.prefix}modal-title">${opt.title}</div><button class="${opt.prefix}btn ${opt.prefix}modal-ok">${opt.ok}</button>`;
+            return `<button class="${opt.prefix}btn ${opt.prefix}modal-cancel"  aria-label="${opt.cancel}"><span>${opt.cancel}</span></button><div class="${opt.prefix}modal-title">${opt.title}</div><button class="${opt.prefix}btn ${opt.prefix}modal-ok" aria-label="${opt.ok}"><span>${opt.ok}</span></button>`;
         },
         static: `<div>Modal Header</div>`
     },
     modalFooters: {
         custom: function(opt) {
-            return `<button class="${opt.prefix}btn ${opt.prefix}modal-cancel">${opt.cancel}</button><button class="${opt.prefix}btn ${opt.prefix}modal-ok">${opt.ok}</button>`;
+            return `<button class="${opt.prefix}btn ${opt.prefix}modal-cancel" aria-label="${opt.cancel}"><span>${opt.cancel}</span></button><button class="${opt.prefix}btn ${opt.prefix}modal-ok" aria-label="${opt.ok}"><span>${opt.ok}</span></button>`;
         },
         static: '<div>Modal Footer</div>'
     },
